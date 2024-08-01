@@ -1,0 +1,28 @@
+<div class="container">
+  <form [formGroup]="conctactForm" class="row g-3 needs-validation" novalidate (submit)="enviar($event)">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Email address</label>
+      <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email" 
+      ngClass="{is-invalid: hasError('email', 'required') || hasError('email', 'email') }">
+      @if(hasErrors('email', 'required')){
+        <span class="text-danger">Your have to complete this field</span>
+      }
+      @if(hasErrors('email', 'email')){
+        <span class="text-danger">Invalid email format</span>
+      }
+      
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" row="3" formControlName="message" 
+      ngClass="{is-invalid: hasError('message', 'required') || hasError('message', 'minlength') }"></textarea>
+      @if(hasErrors('message', 'required')){
+        <span class="text-danger">Your have to complete this field</span>
+      }
+      @if(hasErrors('message', 'minlength')){
+        <span class="text-danger">Your have to write at least 10 characters</span>
+      }
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
